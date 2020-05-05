@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostComponent } from './post/post.component';
-import { ForumService } from './forum.service';
 import { CommentComponent } from './comment/comment.component';
-
-
+import { FeedComponent } from './feed/feed.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-  declarations: [PostComponent, CommentComponent],
+  declarations: [PostComponent, CommentComponent, FeedComponent],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    FlexLayoutModule
+  ],
+  exports: [FeedComponent]
 })
 export class ForumModule { }

@@ -25,4 +25,5 @@ export class ForumService {
     saveNewPost(post: Post): void {
         this.http.post(environment.API_BASE_URL + this.FORUM_API_SUFFIX, post);
     }
+    
 }

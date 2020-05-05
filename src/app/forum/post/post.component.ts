@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Post } from './post.model';
+import { Observable } from 'rxjs';
+import { ForumService } from '../forum.service';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  @Input() postData: Post;
+  comments$: Observable<Array<Comment>>;
+
+  constructor(private forumService: ForumService) { }
 
   ngOnInit(): void {
   }
+
+  // this.posts$ = this.forumService.fetchPosts$();
 
 }
