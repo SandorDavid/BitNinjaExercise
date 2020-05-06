@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Post } from './post/post.model';
 import { environment } from 'src/environments/environment';
+import { startLoadingIndicator } from '@btapai/ng-loading-indicator';
 
 
 @Injectable({
@@ -14,12 +14,13 @@ export class ForumService {
 
     constructor(private http: HttpClient){}
 
-    fetchPosts$(): Observable<Array<Post>> {
-        return this.http.get<Array<Post>>(environment.API_BASE_URL + this.FORUM_API_SUFFIX);
+    fetchPosts(): Promise<Post[]> {
+        return this.http.get<Post[]>(environment.API_BASE_URL + this.FORUM_API_SUFFIX).toPromise();
     }
 
-    fetchCommentsForPost$(postId: number): Observable<Array<Comment>> {
-        return this.http.get<Array<Comment>>(environment.API_BASE_URL + this.FORUM_API_SUFFIX + "/${postId}/comments");
+    @startLoadingIndicator
+    fetchCommentsForPost(postId: number): Promise<Comment[]> {
+        return this.http.get<Comment[]>(environment.API_BASE_URL + this.FORUM_API_SUFFIX + `/${postId}/comments`).toPromise();
     }
 
     saveNewPost(post: Post): void {

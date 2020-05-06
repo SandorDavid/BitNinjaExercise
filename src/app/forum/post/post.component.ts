@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Post } from './post.model';
 import { Observable } from 'rxjs';
 import { ForumService } from '../forum.service';
+import { stopLoadingIndicator } from '@btapai/ng-loading-indicator';
 
 @Component({
   selector: 'app-post',
@@ -10,14 +11,24 @@ import { ForumService } from '../forum.service';
 })
 export class PostComponent implements OnInit {
 
-  @Input() postData: Post;
-  comments$: Observable<Array<Comment>>;
+  @Input() post: Post;
+  comments: Comment[];
 
   constructor(private forumService: ForumService) { }
 
   ngOnInit(): void {
   }
 
-  // this.posts$ = this.forumService.fetchPosts$();
+  getComments(): Comment[] {
+    if (!this.comments)
+      this.forumService.fetchCommentsForPost(this.post.id).then(comments => this.setComments(comments));
+
+    return this.comments;
+  }
+
+  @stopLoadingIndicator
+  setComments(comments: Comment[]){
+    this.comments = comments;
+  }
 
 }

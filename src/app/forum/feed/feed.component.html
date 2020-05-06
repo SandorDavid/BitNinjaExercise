@@ -1,12 +1,49 @@
 <div
-    fxLayout="column" 
-    fxLayoutAlign="space-evenly stretch"
-    fxLayoutGap="10px"
+    fxLayout="column"
+    fxLayoutAlign="space-around start"
+    fxLayoutGap="15px"
 >
-    <app-post
-        fxFlex="50"
+    <div
+        fxFlexFill
 
-        *ngFor="let post of posts$ | async"
-        [postData]="post"
-    ></app-post>
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+    >
+        <div>
+            <button mat-icon-button aria-label="Previous page"
+                (click)="movePage(currentPageNumber - 1)"
+                [disabled]="!pageExists(currentPageNumber - 1)"
+            >
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Next Page"
+                (click)="movePage(currentPageNumber + 1)"
+                [disabled]="!pageExists(currentPageNumber + 1)"
+            >
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+        <mat-button-toggle-group  [value]="currentPagination" (change)="paginationChanged($event)" aria-label="Posts per page">
+            <mat-button-toggle 
+                *ngFor="let pagination of paginationSizes"
+                [value]="pagination">
+                    {{pagination}}
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div>
+        <mat-accordion
+            fxLayout="column" 
+            fxLayoutAlign="space-evenly stretch"
+            fxLayoutGap="10px"
+    >
+            <app-post
+                fxFlex="50"
+
+                *ngFor="let post of getPaginatedPosts()"
+                [post]="post"
+            ></app-post>
+        </mat-accordion>
+    </div>
 </div>
