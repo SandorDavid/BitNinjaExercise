@@ -1,0 +1,60 @@
+<form 
+    fxFill
+
+    fxLayout="column" 
+    fxLayoutAlign="space-evenly center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)" 
+>
+    <div
+        fxFill
+
+        fxLayout="row"
+        fxLayout.lt-sm="column"
+        fxLayoutAlign="space-evenly center"
+        fxLayoutGap="20px"
+    >
+        <mat-form-field fxFlex [hideRequiredMarker]="true">
+            <input 
+                matInput
+                placeholder="Your user id" 
+                type="number" 
+                name="userId" 
+                ngModel 
+                required
+            >
+        </mat-form-field>
+        <mat-form-field fxFlex [hideRequiredMarker]="true">
+            <input 
+                matInput 
+                placeholder="Title"
+                type="text"
+                name="title" 
+                ngModel 
+                required
+            >
+        </mat-form-field>
+    </div>
+    <mat-form-field
+        fxFill
+        [hideRequiredMarker]="true">
+        <mat-label>Message</mat-label>
+        <textarea 
+            matInput 
+            cdkTextareaAutosize 
+            cdkAutosizeMinRows=5
+            name="body" 
+            ngModel 
+            required
+        ></textarea>
+    </mat-form-field> 
+    <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="f.invalid"
+        class="submit-button"
+    >
+    Post it!
+    </button>
+</form>

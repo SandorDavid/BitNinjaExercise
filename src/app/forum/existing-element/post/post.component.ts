@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Post } from './post.model';
-import { Observable } from 'rxjs';
-import { ForumService } from '../forum.service';
+import { Post } from '../../model/post.model';
 import { stopLoadingIndicator } from '@btapai/ng-loading-indicator';
+import { ForumService } from '../../forum.service';
 
 @Component({
   selector: 'app-post',

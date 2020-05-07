@@ -4,7 +4,7 @@
     fxLayoutGap="15px"
 >
     <div
-        fxFlexFill
+        fxFill
 
         fxLayout="row"
         fxLayoutAlign="space-between center"
@@ -31,9 +31,20 @@
             </mat-button-toggle>
         </mat-button-toggle-group>
     </div>
+<div
+    fxFill
 
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="20px"
+>
+    <app-new-post
+        fxFlex
+
+        (newPostPosted)="addPost($event)"
+    ></app-new-post>
     <mat-accordion
-        fxFlexFill
+        fxFill
 
         fxLayout="column" 
         fxLayoutAlign="space-evenly stretch"
@@ -46,4 +57,5 @@
             [post]="post"
         ></app-post>
     </mat-accordion>
+</div>
 </div>

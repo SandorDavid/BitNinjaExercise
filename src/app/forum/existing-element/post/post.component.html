@@ -6,8 +6,13 @@
     class="postContainer"
 >
     <mat-expansion-panel-header>
-        <mat-panel-title>
-            {{post.title}}
+        <mat-panel-title
+            fxLayout="row"
+            fxLayoutAlign="spacebetween center"
+            fxLayoutGap="5px"
+        >
+            <mat-icon>forum</mat-icon>
+            <span>{{post.title}}</span>
         </mat-panel-title>
         <mat-panel-description>
             Posted by: {{post.userId}}
@@ -19,15 +24,16 @@
             {{post.body}}
         </div>
         <mat-list
+            fxLayout="column"
+            fxLayoutGap="8px"
+
             *ngIf="getComments() && getComments().length"
         >
             <div mat-subheader>Comments</div>
-            <mat-list-item *ngFor="let comment of getComments()">
-              <mat-icon mat-list-icon>comment</mat-icon>
-              <div mat-line>{{comment.name}}</div>
-              <i mat-line>{{comment.email}}</i>
-              <div mat-line>{{comment.body}}</div>
-            </mat-list-item>
+            <app-comment
+                *ngFor="let comment of getComments()"
+                [comment]=comment
+            ></app-comment>
         </mat-list>
     </ng-template>
     

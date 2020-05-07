@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../post/post.model';
-import { ForumService } from '../forum.service';
+import { ForumService } from '../../forum.service';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { Post } from '../../model/post.model';
 
 @Component({
   selector: 'app-feed',
@@ -20,7 +20,10 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.forumService.fetchPosts()
-      .then(posts => this.posts = posts);
+      .then(posts => {
+        this.posts = posts;
+        this.posts.reverse();
+      });
   }
 
   getPaginatedPosts(): Post[] {
@@ -47,6 +50,10 @@ export class FeedComponent implements OnInit {
   movePage(prospectivePageNumber: number): void {
     if (this.pageExists(prospectivePageNumber))
       this.currentPageNumber = prospectivePageNumber;
+  }
+
+  addPost(post: Post): void {
+    this.posts.unshift(post);
   }
 
 }
