@@ -28,7 +28,7 @@ export class FeedComponent implements OnInit {
   paginationSizes: string[] = ["10", "25", "All"];
   currentPagination: string = this.paginationSizes[0];
   currentPageNumber: number = 0;
-  newPost: boolean = false;
+  isNewPostMode: boolean = false;
 
   constructor(private forumService: ForumService) { }
 
@@ -68,7 +68,7 @@ export class FeedComponent implements OnInit {
 
   addPost(post: Post): void {
     this.posts.unshift(post);
-    this.newPost = false;
+    this.isNewPostMode = false;
   }
 
 }

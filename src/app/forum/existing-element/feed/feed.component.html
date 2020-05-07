@@ -41,16 +41,16 @@
     <button
     mat-icon-button
     id="newPostButton"
-    [@inOut]="!newPost"
+    [@inOut]="!isNewPostMode"
 
-    (click)="newPost = true"
+    (click)="isNewPostMode = true"
     >
         <mat-icon id="newPostIcon">add_circle</mat-icon>
     </button>
 
     <app-new-post
         fxFlex
-        [@inOut]="newPost"
+        [@inOut]="isNewPostMode"
 
         (newPostPosted)="addPost($event)"
     ></app-new-post>
