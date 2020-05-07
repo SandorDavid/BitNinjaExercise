@@ -10,13 +10,13 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
   styleUrls: ['./feed.component.sass'],
   animations: [
     trigger('inOut', [
-      state('true', style({opacity:'1', visibility: 'visible'})),
-      state('false', style({opacity:'0', visibility: 'hidden'})),
+      state('true', style({opacity:'1', visibility: 'visible', maxHeight: '300px'})),
+      state('false', style({opacity:'0', visibility: 'hidden', maxHeight: '0px'})),
       transition('0 => 1', [
         animate('800ms ease-in')
       ]),
       transition('1 => 0', [
-        animate('300ms ease-in')
+        animate('600ms ease-in')
       ])
     ])
   ]
