@@ -26,7 +26,6 @@ export class NewPostComponent implements OnInit {
 
   @stopLoadingIndicator
   handleNewPost(f: NgForm, post: Post) {
-    f.resetForm();
     this.newPostPosted.emit(post);
   }
 
