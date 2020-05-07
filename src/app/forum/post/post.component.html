@@ -15,7 +15,9 @@
     </mat-expansion-panel-header>
 
     <ng-template matExpansionPanelContent>
-        {{post.body}}
+        <div>
+            {{post.body}}
+        </div>
         <mat-list
             *ngIf="getComments() && getComments().length"
         >
@@ -23,10 +25,10 @@
             <mat-list-item *ngFor="let comment of getComments()">
               <mat-icon mat-list-icon>comment</mat-icon>
               <div mat-line>{{comment.name}}</div>
-              <div mat-line>{{comment.email}}</div>
+              <i mat-line>{{comment.email}}</i>
               <div mat-line>{{comment.body}}</div>
             </mat-list-item>
-          </mat-list>
+        </mat-list>
     </ng-template>
     
 </mat-expansion-panel>

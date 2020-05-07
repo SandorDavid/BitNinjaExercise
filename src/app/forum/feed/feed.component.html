@@ -32,18 +32,18 @@
         </mat-button-toggle-group>
     </div>
 
-    <div>
-        <mat-accordion
-            fxLayout="column" 
-            fxLayoutAlign="space-evenly stretch"
-            fxLayoutGap="10px"
-    >
-            <app-post
-                fxFlex="50"
+    <mat-accordion
+        fxFlexFill
 
-                *ngFor="let post of getPaginatedPosts()"
-                [post]="post"
-            ></app-post>
-        </mat-accordion>
-    </div>
+        fxLayout="column" 
+        fxLayoutAlign="space-evenly stretch"
+        fxLayoutGap="10px"
+    >
+        <app-post
+            fxFlex="50"
+
+            *ngFor="let post of getPaginatedPosts()"
+            [post]="post"
+        ></app-post>
+    </mat-accordion>
 </div>
